@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "The DateTime utils",
   "main": "./build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alekseypavlov14/date-time"
+  },
   "scripts": {
     "prepublishOnly": "npm run test && npm run build",
     "test": "jest ./src/tests --watchAll",
