@@ -4,7 +4,7 @@
   "description": "The DateTime utils",
   "main": "./build/index.js",
   "scripts": {
-    "test": "jest ./src/test --watchAll",
+    "test": "jest ./src/tests --watchAll",
     "build": "tsc"
   },
   "keywords": [
