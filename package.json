@@ -4,6 +4,7 @@
   "description": "The DateTime utils",
   "main": "./build/index.js",
   "scripts": {
+    "prepublishOnly": "npm run test && npm run build",
     "test": "jest ./src/tests --watchAll",
     "build": "tsc"
   },
