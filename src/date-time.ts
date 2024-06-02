@@ -124,4 +124,14 @@ export class DateTime {
   isMomentLater(moment: DateTime): boolean {
     return !this.isMomentEarlier(moment)
   }
+
+  getFirstDayOfWeek(): DateTime {
+    const dayOfWeek = this.getDate().getDay()
+    return this.getDateTimeBefore({ days: dayOfWeek })
+  }
+
+  getLastDayOfWeek(): DateTime {
+    const firstDayOfWeek = this.getFirstDayOfWeek()
+    return firstDayOfWeek.getDateTimeAfter({ days: 6 })
+  }
 }

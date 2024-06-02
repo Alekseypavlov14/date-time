@@ -77,3 +77,19 @@ test('isMomentLater method should return true if the given moment is later or eq
   expect(currentDateTime.isMomentLater(earlierDateTime)).toBe(false)
   expect(currentDateTime.isMomentLater(laterDateTime)).toBe(true)
 })
+
+// Test for getFirstDayOfWeek method
+test('getFirstDayOfWeek method should return a DateTime instance representing the first day of the week', () => {
+  const dateTime = new DateTime(someDateInMilliseconds) // April 23, 2021, which is a Friday
+  const expectedFirstDayOfWeek = new DateTime(1618693200000) // April 18, 2021, which is a Sunday
+
+  expect(dateTime.getFirstDayOfWeek()).toEqual(expectedFirstDayOfWeek)
+})
+
+// Test for getLastDayOfWeek method
+test('getLastDayOfWeek method should return a DateTime instance representing the last day of the week', () => {
+  const dateTime = new DateTime(someDateInMilliseconds) // April 23, 2021, which is a Friday
+  const expectedLastDayOfWeek = new DateTime(1619211600000) // April 24, 2021, which is a Saturday
+
+  expect(dateTime.getLastDayOfWeek()).toEqual(expectedLastDayOfWeek)
+})

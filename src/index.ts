@@ -1,1 +1,1 @@
-export { DateTime } from './date-time'
+export { DateTime, TimeData } from './date-time'
