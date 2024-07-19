@@ -2,9 +2,9 @@
 
 ## Description
 
-`@oleksii-pavlov/date-time` is a TypeScript library that provides a DateTime class for handling date and time operations.
+`@oleksii-pavlov/date-time` is a TypeScript library that provides a DateTime class for handling date and time operations and DateFormatter class for date formatting.
 
-The DateTime class allows you to work with dates and times, manipulate them, perform comparisons, and convert between different formats.
+The DateTime class allows you to work with dates and times, manipulate them, perform comparisons, and convert between different formats using DateFormatter.
 
 ## Installation
 
@@ -189,3 +189,50 @@ interface TimeData {
 ```
 
 In DateTime **constructor** TimeData is one of the possible arguments. For **Date** properties **years**, **months**, **days** default values are **today** values. For **Time** properties **hours**, **minutes**, **seconds**, **milliseconds** default values are **0** (00:00 time)
+
+### DateFormatter
+
+#### Creating DateFormatter Instances
+
+You can create `DateFormatter` instances with optional configuration for custom day and month names:
+
+```typescript
+// Create a DateFormatter instance with default configuration
+const dateFormatter = new DateFormatter()
+
+// Create a DateFormatter instance with custom configuration
+const customDateFormatter = new DateFormatter({
+  shortDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  fullDays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  fullMonths: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+})
+```
+
+#### Methods
+
+##### `createFormatter(template: string): (date: number) => string`
+
+Creates a formatter function based on the provided template. The template can include various date and time symbols which will be replaced by the corresponding values from the `DateTime` instance.
+
+```typescript
+const dateFormatter = new DateFormatter()
+
+const formatDate = dateFormatter.createFormatter('YYYY.MM.DD')
+const formattedDate = formatDate(new Date('2024-07-19').getTime())
+
+console.log(formattedDate) // Outputs: '2024.07.19'
+```
+
+#### Customizing Date and Month Names
+
+You can customize the short and full names for days and months by providing arrays in the configuration. This allows you to use non-standard names or translations as needed.
+
+```typescript
+const customDateFormatter = new DateFormatter({
+  shortDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  fullDays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  fullMonths: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+})
+```
