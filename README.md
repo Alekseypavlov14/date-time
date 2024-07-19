@@ -236,3 +236,22 @@ const customDateFormatter = new DateFormatter({
   fullMonths: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 })
 ```
+
+#### Docs for creating your own templates
+
+Symbols used for templates:
+
+- Y - years - YYYY is "2024", YY is "24"
+- M - months - MM is "09"
+- D - days - DD is "27"
+- h - hours - hh is "18"
+- m - minutes - mm is "05"
+- s - seconds - ss is "37"
+- S - milliseconds - SSS is "297"
+
+Special symbol combinations:
+
+- MMM - short month as text - "Jan", "Feb", "Mar" and so on or [custom](#customizing-date-and-month-names)
+- MMMM - full month as text - "January", "February", "March" and so on or custom
+- DDD - short day of week - "Sun", "Mon", "Tue" and so on or custom
+- DDDD - full day of week - "Sunday", "Monday", "Tuesday", "Wednesday" and so on or custom
