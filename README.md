@@ -148,7 +148,7 @@ const milliseconds = dateTime.getTimeInMilliseconds()
 console.log(milliseconds)
 ```
 
-#### `getFirstDayOfWeek(): DateTime`
+#### `getFirstDayOfWeek(firstDayOfWeekIndex: number = 0): DateTime`
 
 Returns the DateTime represents the first day of that week. Note that this method saves the time of the current date so you need to use **.normalizeDate()** to set 00:00 time.
 
@@ -159,7 +159,14 @@ const firstDayOfWeek = dateTime.getFirstDayOfWeek()
 console.log(firstDayOfWeek) // Sunday of that week
 ```
 
-#### `getLastDayOfWeek(): DateTime`
+```typescript
+const dateTime = new DateTime()
+const firstDayOfWeek = dateTime.getFirstDayOfWeek(1)
+
+console.log(firstDayOfWeek) // Monday of that week
+```
+
+#### `getLastDayOfWeek(firstDayOfWeekIndex: number = 0): DateTime`
 
 Returns the DateTime represents the last day of that week. Note that this method saves the time of the current date so you need to use **.normalizeDate()** to set 00:00 time.
 
@@ -168,6 +175,13 @@ const dateTime = new DateTime()
 const lastDayOfWeek = dateTime.getLastDayOfWeek()
 
 console.log(lastDayOfWeek) // Saturday of that week
+```
+
+```typescript
+const dateTime = new DateTime()
+const lastDayOfWeek = dateTime.getLastDayOfWeek(1)
+
+console.log(lastDayOfWeek) // Sunday of that week
 ```
 
 ### API

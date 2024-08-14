@@ -125,13 +125,14 @@ export class DateTime {
     return !this.isMomentEarlier(moment)
   }
 
-  getFirstDayOfWeek(): DateTime {
+  getFirstDayOfWeek(firstDayOfWeekIndex: number = 0): DateTime {
     const dayOfWeek = this.getDate().getDay()
-    return this.getDateTimeBefore({ days: dayOfWeek })
+    const dateDifference = (firstDayOfWeekIndex > dayOfWeek ? 7 : 0) + dayOfWeek - firstDayOfWeekIndex
+    return this.getDateTimeBefore({ days: dateDifference })
   }
 
-  getLastDayOfWeek(): DateTime {
-    const firstDayOfWeek = this.getFirstDayOfWeek()
+  getLastDayOfWeek(firstDayOfWeekIndex: number = 0): DateTime {
+    const firstDayOfWeek = this.getFirstDayOfWeek(firstDayOfWeekIndex)
     return firstDayOfWeek.getDateTimeAfter({ days: 6 })
   }
 }

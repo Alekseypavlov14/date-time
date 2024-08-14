@@ -93,3 +93,17 @@ test('getLastDayOfWeek method should return a DateTime instance representing the
 
   expect(dateTime.getLastDayOfWeek()).toEqual(expectedLastDayOfWeek)
 })
+
+test('getFirstDayOfWeek with custom localization', () => {
+  const dateTime = new DateTime(someDateInMilliseconds) // April 23, 2021, which is a Friday
+  const expectedFirstDayOfWeek = new DateTime(1618779600000) // April 19, 2021, which is a Monday
+
+  expect(dateTime.getFirstDayOfWeek(1)).toEqual(expectedFirstDayOfWeek)
+})
+
+test('getLastDayOfWeek with custom localization', () => {
+  const dateTime = new DateTime(someDateInMilliseconds) // April 23, 2021, which is a Friday
+  const expectedLastDayOfWeek = new DateTime(1619298000000) // April 25, 2021, which is a Sunday
+
+  expect(dateTime.getLastDayOfWeek(1)).toEqual(expectedLastDayOfWeek)
+})
