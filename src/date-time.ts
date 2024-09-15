@@ -126,13 +126,21 @@ export class DateTime {
   }
 
   getFirstDayOfWeek(firstDayOfWeekIndex: number = 0): DateTime {
-    const dayOfWeek = this.getDate().getDay()
-    const dateDifference = (firstDayOfWeekIndex > dayOfWeek ? 7 : 0) + dayOfWeek - firstDayOfWeekIndex
+    const dateDifference = this.calculateDateDifference(firstDayOfWeekIndex)
     return this.getDateTimeBefore({ days: dateDifference })
   }
 
   getLastDayOfWeek(firstDayOfWeekIndex: number = 0): DateTime {
     const firstDayOfWeek = this.getFirstDayOfWeek(firstDayOfWeekIndex)
     return firstDayOfWeek.getDateTimeAfter({ days: 6 })
+  }
+
+  getWeekDay(firstDayOfWeekIndex: number = 0): number {
+    return this.calculateDateDifference(firstDayOfWeekIndex)
+  }
+
+  private calculateDateDifference(firstDayOfWeekIndex: number): number {
+    const dayOfWeek = this.getDate().getDay()
+    return (dayOfWeek - firstDayOfWeekIndex + 7) % 7
   }
 }

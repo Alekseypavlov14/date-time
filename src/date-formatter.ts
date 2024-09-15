@@ -1,4 +1,4 @@
-import { DAY_DURING_PROCESSING_SYMBOL, DAY_SYMBOL, defaultFullDays, defaultFullMonths, defaultShortDays, defaultShortMonths, HOUR_SYMBOL, MILLISECOND_SYMBOL, MINUTE_SYMBOL, MONTH_DURING_PROCESSING_SYMBOL, MONTH_SYMBOL, SECOND_SYMBOL, YEAR_SYMBOL } from './constants'
+import { DAY_DURING_PROCESSING_SYMBOL, DAY_SYMBOL, defaultFullDays, defaultFullMonths, defaultShortDays, defaultShortMonths, defaultWeekStart, HOUR_SYMBOL, MILLISECOND_SYMBOL, MINUTE_SYMBOL, MONTH_DURING_PROCESSING_SYMBOL, MONTH_SYMBOL, SECOND_SYMBOL, YEAR_SYMBOL } from './constants'
 import { DateTime } from './date-time'
 
 type ReplaceValue = number | string
@@ -8,6 +8,7 @@ export interface DateFormatterConfig {
   fullDays?: string[]
   shortMonths?: string[]
   fullMonths?: string[]
+  weekStart?: number
 }
 
 export class DateFormatter {
@@ -15,12 +16,14 @@ export class DateFormatter {
   private fullDays: string[] = defaultFullDays
   private shortMonths: string[] = defaultShortMonths
   private fullMonths: string[] = defaultFullMonths
+  private weekStart: number = defaultWeekStart
 
   constructor(config: DateFormatterConfig = {}) {
     if (config.shortDays) this.shortDays = config.shortDays
     if (config.fullDays) this.fullDays = config.fullDays
     if (config.shortMonths) this.shortMonths = config.shortMonths
     if (config.fullMonths) this.fullMonths = config.fullMonths
+    if (config.weekStart) this.weekStart = config.weekStart
   }
 
   createFormatter(template: string) {
@@ -49,7 +52,7 @@ export class DateFormatter {
       const timeData = dateTime.getTimeData()
 
       // for custom replacers
-      const dayOfWeek = dateTime.getDate().getDay()
+      const dayOfWeek = (dateTime.getWeekDay(this.weekStart) + this.weekStart) % 7
       const monthIndex = dateTime.getDate().getMonth()
   
       return template

@@ -1,4 +1,5 @@
 import { DateFormatter } from '../date-formatter'
+import { DateTime } from '../date-time'
 
 test('should format date correctly with YYYY-MM-DD template', () => {
   const dateFormatter = new DateFormatter().createFormatter('YYYY-MM-DD')
@@ -87,3 +88,11 @@ test('should format date correctly with custom full days', () => {
   const date = new Date('2024-07-19').getTime() // Saturday
   expect(dateFormatter(date)).toBe('Frius, 19 Jul 2024') // Expecting custom full day name 'Frius' for Friday
 })
+
+test('should format date correctly with custom weekStart', () => {
+  const customWeekStart = 1 // Week starts on Monday
+  const dateFormatter = new DateFormatter({ weekStart: customWeekStart }).createFormatter('DDDD, DD MMM YYYY')
+  const date = new DateTime({ years: 2024, months: 9, days: 15 }).getTimeInMilliseconds() // Sunday
+  expect(dateFormatter(date)).toBe('Sunday, 15 Sep 2024') // Expecting custom short day name 'S' for Sunday
+})
+

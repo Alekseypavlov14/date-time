@@ -107,3 +107,10 @@ test('getLastDayOfWeek with custom localization', () => {
 
   expect(dateTime.getLastDayOfWeek(1)).toEqual(expectedLastDayOfWeek)
 })
+
+test('getWeekDay method should return the correct weekday index for September 15, 2024', () => {
+  const dateTime = new DateTime({ years: 2024, months: 9, days: 15 }) // September 15, 2024, which is a Sunday
+  const expectedWeekDay = 6
+
+  expect(dateTime.getWeekDay(1)).toEqual(expectedWeekDay)
+})
