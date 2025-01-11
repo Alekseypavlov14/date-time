@@ -52,3 +52,5 @@ export const MONTH_DURING_PROCESSING_SYMBOL = 'A' // symbol does not matter. It 
 export const DAY_DURING_PROCESSING_SYMBOL = 'B' // symbol does not matter. It has NOT duplicate basic symbols (Y,M,D,h,m,s,S)
 
 export const defaultWeekStart = 0
+
+export const minimalSymbolsAfterSlicing = 2

@@ -25,6 +25,16 @@ test('should format date correctly with hh:mm:ss.SSS template', () => {
   expect(dateFormatter(date)).toBe('15:30:45.123')
 })
 
+test('should format date correctly with m:ss template', () => {
+  const dateFormatter = new DateFormatter().createFormatter('m:ss')
+
+  const date1 = new Date('2024-07-19T15:05:45.123').getTime()
+  expect(dateFormatter(date1)).toBe('5:45')
+
+  const date2 = new Date('2024-07-19T15:45:45.123').getTime()
+  expect(dateFormatter(date2)).toBe('45:45')
+})
+
 test('should format date correctly with mixed length symbols', () => {
   const dateFormatter = new DateFormatter().createFormatter('YYYY, YY, YYYYY')
   const date = new Date('2024-07-19').getTime()

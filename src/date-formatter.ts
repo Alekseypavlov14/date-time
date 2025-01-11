@@ -1,4 +1,4 @@
-import { DAY_DURING_PROCESSING_SYMBOL, DAY_SYMBOL, defaultFullDays, defaultFullMonths, defaultShortDays, defaultShortMonths, defaultWeekStart, HOUR_SYMBOL, MILLISECOND_SYMBOL, MINUTE_SYMBOL, MONTH_DURING_PROCESSING_SYMBOL, MONTH_SYMBOL, SECOND_SYMBOL, YEAR_SYMBOL } from './constants'
+import { DAY_DURING_PROCESSING_SYMBOL, DAY_SYMBOL, defaultFullDays, defaultFullMonths, defaultShortDays, defaultShortMonths, defaultWeekStart, HOUR_SYMBOL, MILLISECOND_SYMBOL, minimalSymbolsAfterSlicing, MINUTE_SYMBOL, MONTH_DURING_PROCESSING_SYMBOL, MONTH_SYMBOL, SECOND_SYMBOL, YEAR_SYMBOL } from './constants'
 import { DateTime } from './date-time'
 
 type ReplaceValue = number | string
@@ -80,7 +80,7 @@ export class DateFormatter {
   }
 
   private createReplacer(value: ReplaceValue) {
-    return (match: string) => this.padValue(value, match.length).slice(-match.length)
+    return (match: string) => this.padValue(value, match.length).slice(-Math.max(match.length, minimalSymbolsAfterSlicing))
   }
   private padValue(value: ReplaceValue, length: number) {
     return String(value ?? '').padStart(length, '0')
