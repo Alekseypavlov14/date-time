@@ -23,7 +23,7 @@ export class DateTime {
   }
   
   static mapTimeDataToDate(timeData: TimeData): Date {
-    const currentDate = new Date()
+    const currentDate = new Date(0)
     const normalizedTimeData = DateTime.normalizeTimeData(timeData)
 
     currentDate.setFullYear(normalizedTimeData.years)

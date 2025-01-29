@@ -114,3 +114,11 @@ test('getWeekDay method should return the correct weekday index for September 15
 
   expect(dateTime.getWeekDay(1)).toEqual(expectedWeekDay)
 })
+
+test('Days when jump over month', () => {
+  const dateTime = new DateTime({ years: 2025, months: 1, days: 22 }) 
+  const newDate = dateTime.getDateTimeAfter({ days: 10 })
+
+  expect(newDate.getTimeData().days).toBe(1) 
+  expect(newDate.getTimeData().months).toBe(2)
+})
